@@ -1,10 +1,8 @@
-def isPrime(n):
-    for i in range(2, n):
-        if n % i == 0:
-            return 0
-    return 1
+def is_prime(x):
+    return x > 1 and all(x % d for d in range(2, x ** 0.5) + 1) #По сути проверяем x % d потому что это всегда 0 ИЛИ 1
 
-
+#Если ТОЧНЫЙ ПОРЯДОК НЕИЗВЕСТЕН - вначале руками аналитичеки подбираем начальную строчку
+#Здесь порядок не важен - в этом прототипе (с кареткой) всегда получаются одинаковые цифры (в разном порядке), но ищем их СУММУ
 for n in range(1, 100):
     s = ">" + "0" * 39 + "1" * n + "2" * 39
     while ">1" in s or ">2" in s or ">0" in s:
@@ -14,6 +12,6 @@ for n in range(1, 100):
             s = s.replace(">2", "2>", 1)
         if ">0" in s:
             s = s.replace(">0", "1>", 1)
-    if isPrime(sum(int(i) for i in s if i != ">")):
+    if is_prime(sum(int(i) for i in s if i != ">")):
         print(n)
         break

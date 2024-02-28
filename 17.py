@@ -1,4 +1,4 @@
-f = open("Файлы ЕГЭ 2023-2024/17_1.txt")
+f = open("Файлы/17_1.txt")
 a = [int(i) for i in f]
 aver = sum(a) / len(a)
 pairs = []

@@ -1,10 +1,21 @@
+# Среди натуральных чисел, больших 65000, найдите первые 7 чисел, удовлетворяющих маске 6*97*5? и имеющих не менее 4 чётных делителей.
+# Запишите в ответе найденные числа в порядке возрастания, справа от каждого числа запишите сумму его чётных делителей.
+
 from fnmatch import fnmatch
 
-for i in range(65000, 700000):
-    p = []
-    if fnmatch(str(i), "6*97*5?"):
-        for div in range(2, i+1):
-            if i % div == 0 and div % 2 == 0:
-                p.append(div)
-    if len(p) >= 4:
-        print(i, sum(p))
+
+def d(x):
+    s = set()
+    for i in range(1, int(x ** 0.5) + 1):
+        if x % i == 0:
+            s |= {i, x // i}
+    return s
+
+
+k = 0
+for x in range(65000, 10 ** 10):
+    s = [i for i in d(x) if i % 2 == 0]
+    if len(s) >= 4 and fnmatch(str(x), "6*97*5?"):
+        print(x, sum(s))
+        k += 1
+    if k == 7: break

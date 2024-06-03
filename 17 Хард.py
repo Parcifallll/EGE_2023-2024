@@ -1,5 +1,5 @@
 
-f = open("Файлы/1.txt")
+f = open("27_1.txt")
 a = [int(i) for i in f]
 max_n = max(int(i) for i in a if str(i)[-1] == "3") ** 2  # кв макс оканч на 3
 pairs = []
